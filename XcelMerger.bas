@@ -1,13 +1,13 @@
-Attribute VB_Name = "XcelMerger"
 Sub Combine()
 'ErajExcelMerger
     Dim i As Integer
     Dim xTCount As Variant
     Dim xWs As Worksheet
     Dim cWs As Worksheet
-    Dim zWs As Variant
     Dim NewName As String
-    'Dim Exclude() As String
+    Dim Exclude() As String
+    Dim xClude As String
+    Dim Delim As String
     On Error Resume Next
 LInput:
     xTCount = Application.InputBox("The number of title/header rows", "", "1")
@@ -27,17 +27,17 @@ LInput:
     'Copy Title and Paste on A1 of Merged Sheet
     Worksheets(4).Range("A1").EntireRow.Copy Destination:=cWs.Range("A1")
     
-    'Exclude = Split("Sheet1,Product", ",")
+    Delim = ","
+    Exclude = Split("Sheet1,Product", ",")
+    xClude = Join(Exclude, Delim)
+    xClude = Delim & cWs.Name & Delim & xClude & Delim
 
     'Switch Row - 1 to + 1 for 1st entry in Line 23
     For Each xWs In ThisWorkbook.Sheets
-        If InStr(1, " " & cWs.Name & " Sheet1 Product ", " " & xWs.Name & " ", vbTextCompare) = 0 Then
-            zWs = xWs.Name
+        If InStr(1, xClude, Delim & xWs.Name & Delim, vbTextCompare) = 0 Then
             xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
                    cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row + 1, 1).PasteSpecial Paste:=xlPasteValues
         End If
     Next xWs
     
 End Sub
-
-
