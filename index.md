@@ -1,37 +1,16 @@
-## Welcome to GitHub Pages
+# XcelSheetsMerger
+ Simple VBA Script to Merge/Combine Excel Sheets into One
 
-You can use the [editor on GitHub](https://github.com/erajtob/XcelSheetsMerger/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+1. Make sure to download the Zipped Release from here - [DOWNLOAD](https://github.com/erajtob/XcelSheetsMerger/releases/tag/v1.1)
+2. Import the *xcelsheetsmergerv1.1.frm* Form into your Excel workbook's Visual Basic Code Editor.
+3. *xcelsheetsmergerv1.1.frm* will appear as a Form in the Project Explorer(*You can turn on Project Explorer from View if it's not there*).
+4. Double Click on *xcelsheetsmergerv1.1.frm*
+5. Click the **Play** button or **Run**(You can use shortcut **F5** to Run as well.)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![GitHub Logo](https://github.com/erajtob/XcelSheetsMerger/blob/main/screen.jpg)  
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/erajtob/XcelSheetsMerger/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+If you don't have Macro's enabled first enable the Developer Tab:  
+> Go to File –> Options.  
+> In the Excel Options dialogue box, click on Customize Ribbon in the left pane. It will show the Customize the Ribbon options on the right.  
+> On the right, within the Main Tabs pane, check the Developer option.  
+> Click OK.  
