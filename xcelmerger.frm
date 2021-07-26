@@ -13,8 +13,9 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Label4_Click()
-
+Private Sub Label6_Click()
+    ActiveWorkbook.FollowHyperlink _
+    Address:="https://github.com/erajtob/XcelSheetsMerger"
 End Sub
 
 Private Sub mergeButton_Click()
@@ -84,14 +85,13 @@ LInput:
                 ElseIf chckBox = False Then
                     xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
                            cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row + 1, 1).PasteSpecial Paste:=xlPasteValues
+                    offSetL = offSetL - 1
                 End If
             End If
         Next xWs
     Next
     'Me.debuglab.Caption = Me.CheckBox1.Value
 End Sub
-
-
 
 Private Sub UserForm_Initialize()
     Dim J As Long
