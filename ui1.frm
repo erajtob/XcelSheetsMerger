@@ -16,6 +16,8 @@ Attribute VB_Exposed = False
 Private Sub mergeButton_Click()
 'ErajExcelMerger
     Dim i As Integer
+    Dim offSetL As Integer
+    Dim sCount As Integer
     Dim xTCount As Variant
     Dim xWs As Worksheet
     Dim cWs As Worksheet
@@ -25,6 +27,7 @@ Private Sub mergeButton_Click()
     Dim Exclude() As String
     Dim xClude As String
     Dim Delim As String
+    Dim chckBox As Boolean
     On Error Resume Next
 LInput:
     xTCount = xTCountBox.Value
@@ -55,14 +58,33 @@ LInput:
     Exclude = Split(Selected_Sheets, ",")
     xClude = Join(Exclude, Delim)
     xClude = Delim & cWs.Name & Delim & xClude & Delim
-    Me.debuglab.Caption = xClude
-    'Switch Row - 1 to + 1 for 1st entry in Line 23
-    For Each xWs In ThisWorkbook.Sheets
-        If InStr(1, xClude, Delim & xWs.Name & Delim, vbTextCompare) = 0 Then
-            xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
-                   cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row + 1, 1).PasteSpecial Paste:=xlPasteValues
-        End If
-    Next xWs
+    sCount = Sheets.Count - (UBound(Exclude) - LBound(Exclude) + 2)
+    chckBox = Me.CheckBox1.Value
+    Me.debuglab.Caption = sCount
+    'Outer Loop to keep sheet count to determine 1st paste incase of offset
+    For offSetL = sCount To 0 Step -1
+        'Inner Loop to iterate through worksheets
+        For Each xWs In ThisWorkbook.Sheets
+            'InStr to exclude sheets from selected sheets to exclude
+            If InStr(1, xClude, Delim & xWs.Name & Delim, vbTextCompare) = 0 Then
+                'Offset requires first paste to be positive offset thus splitting with IF statement
+                If chckBox = True And offSetL = sCount Then
+                    xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
+                           cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row + 1, 1).PasteSpecial Paste:=xlPasteValues
+                    offSetL = offSetL - 1
+                ElseIf chckBox = True And offSetL < sCount Then
+                    xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
+                           cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row - 1, 1).PasteSpecial Paste:=xlPasteValues
+                    offSetL = offSetL - 1
+                'No Offset Code Run
+                ElseIf chckBox = False Then
+                    xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
+                           cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row + 1, 1).PasteSpecial Paste:=xlPasteValues
+                End If
+            End If
+        Next xWs
+    Next
+    'Me.debuglab.Caption = Me.CheckBox1.Value
 End Sub
 
 
@@ -79,4 +101,5 @@ Private Sub UserForm_Initialize()
         Me.ListBox1.AddItem K.Name
         Next K
 End Sub
+
 
