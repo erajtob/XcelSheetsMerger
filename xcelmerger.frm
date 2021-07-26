@@ -21,6 +21,8 @@ End Sub
 Private Sub mergeButton_Click()
 'ErajExcelMerger
     Dim i As Integer
+    Dim xRows As Integer
+    Dim yCol As Integer
     Dim offSetL As Integer
     Dim sCount As Integer
     Dim xTCount As Variant
@@ -33,6 +35,7 @@ Private Sub mergeButton_Click()
     Dim xClude As String
     Dim Delim As String
     Dim chckBox As Boolean
+    Dim offSetRows As Integer
     On Error Resume Next
 LInput:
     xTCount = xTCountBox.Value
@@ -65,6 +68,8 @@ LInput:
     xClude = Delim & cWs.Name & Delim & xClude & Delim
     sCount = Sheets.Count - (UBound(Exclude) - LBound(Exclude) + 2)
     chckBox = Me.CheckBox1.Value
+    'offSetRow count
+    offSetRows = Me.offSetRowsBox.Value - 1
     Me.debuglab.Caption = sCount
     'Outer Loop to keep sheet count to determine 1st paste incase of offset
     For offSetL = sCount To 0 Step -1
@@ -79,7 +84,7 @@ LInput:
                     offSetL = offSetL - 1
                 ElseIf chckBox = True And offSetL < sCount Then
                     xWs.Range("A1").CurrentRegion.Offset(CInt(xTCount), 0).Copy
-                           cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row - 1, 1).PasteSpecial Paste:=xlPasteValues
+                           cWs.Cells(cWs.UsedRange.Cells(cWs.UsedRange.Count).Row - offSetRows, 1).PasteSpecial Paste:=xlPasteValues
                     offSetL = offSetL - 1
                 'No Offset Code Run
                 ElseIf chckBox = False Then
@@ -90,6 +95,12 @@ LInput:
             End If
         Next xWs
     Next
+    'Offset row for the last paste
+    If chckBox = True Then
+        xRows = cWs.UsedRange.Rows.Count
+        yRows = cWs.UsedRange.Columns.Count
+        cWs.Rows(xRows & ":" & xRows - offSetRows).EntireRow.Delete
+    End If
     'Me.debuglab.Caption = Me.CheckBox1.Value
 End Sub
 
