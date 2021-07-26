@@ -1,8 +1,11 @@
 # XcelSheetsMerger
  Simple VBA Script to Merge/Combine Excel Sheets into One
 
-Import the *xcelMerger.frm* Form into your Excel workbook's Visual Basic Code Editor and Run,
-Rest should be self explanatory from the UI.
+1. Make sure to download the Release from here - [DOWNLOAD](https://github.com/erajtob/XcelSheetsMerger/releases/tag/v1.0)
+2. Import the *xcelMerger.frm* Form into your Excel workbook's Visual Basic Code Editor.
+3. *xcelMerger.frm* will appear as a Form in the Project Explorer(*You can turn on Project Explorer from View if it's not there*).
+4. Double Click on *xcelMerger.frm*
+5. Click the **Play** button or **Run**(You can use shortcut **F5** to Run as well.)
 
 ![GitHub Logo](https://github.com/erajtob/XcelSheetsMerger/blob/main/screen.jpg)  
 
