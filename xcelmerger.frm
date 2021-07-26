@@ -13,6 +13,16 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub CheckBox1_Click()
+    If CheckBox1.Value = True Then
+    offSetRowsBox.Enabled = True
+    offSetRowsBox.BackColor = RGB(255, 255, 255)
+    Else
+    offSetRowsBox.Enabled = False
+    offSetRowsBox.BackColor = RGB(232, 232, 232)
+    End If
+End Sub
+
 Private Sub Label6_Click()
     ActiveWorkbook.FollowHyperlink _
     Address:="https://github.com/erajtob/XcelSheetsMerger"
@@ -44,7 +54,7 @@ LInput:
         MsgBox "Only can enter number", , "Merger for Excel"
         GoTo LInput
     End If
-    
+    Application.ScreenUpdating = False
     'Add extra Sheet to workbook for the Merged dump
     Set cWs = ActiveWorkbook.Worksheets.Add(Sheets(1))
 
@@ -70,7 +80,6 @@ LInput:
     chckBox = Me.CheckBox1.Value
     'offSetRow count
     offSetRows = Me.offSetRowsBox.Value - 1
-    Me.debuglab.Caption = sCount
     'Outer Loop to keep sheet count to determine 1st paste incase of offset
     For offSetL = sCount To 0 Step -1
         'Inner Loop to iterate through worksheets
@@ -101,12 +110,14 @@ LInput:
         yRows = cWs.UsedRange.Columns.Count
         cWs.Rows(xRows & ":" & xRows - offSetRows).EntireRow.Delete
     End If
-    'Me.debuglab.Caption = Me.CheckBox1.Value
+    Application.ScreenUpdating = True
+    MsgBox "All Sheets Merged.", vbOKOnly, "Done"
 End Sub
 
 Private Sub UserForm_Initialize()
     Dim J As Long
     Dim K As Worksheet
+    offSetRowsBox.BackColor = RGB(232, 232, 232)
         Me.sWsBox.Clear
         For J = 1 To Sheets.Count
             Me.sWsBox.AddItem Sheets(J).Name
