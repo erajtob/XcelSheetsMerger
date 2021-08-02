@@ -1,5 +1,6 @@
 # XcelSheetsMerger
  Simple VBA Script to Merge/Combine Excel Sheets into One
+ >*PS: As of now the data copied from the sheets for merging are pasted as text/values only, so no formulas are copied, formatting stays same.*
 
 1. Make sure to download the Zipped Release from here - [DOWNLOAD](https://github.com/erajtob/XcelSheetsMerger/releases/tag/v1.1)
 2. Import the *xcelsheetsmergerv1.1.frm* Form into your Excel workbook's Visual Basic Code Editor.
