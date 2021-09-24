@@ -19,3 +19,4 @@ If you don't have Macro's enabled first enable the Developer Tab:
 Future Feature Plans:
  * Come up with a better system to flexibly offset rows.
  * Option to enable and disable formula being pasted.
+ * Create a two pane side by side list UI input system to select the sheets to skip/merge to make it more intuitive and easy.(like add/remove system)
