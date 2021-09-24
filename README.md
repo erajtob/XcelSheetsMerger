@@ -15,3 +15,7 @@ If you don't have Macro's enabled first enable the Developer Tab:
 > In the Excel Options dialogue box, click on Customize Ribbon in the left pane. It will show the Customize the Ribbon options on the right.  
 > On the right, within the Main Tabs pane, check the Developer option.  
 > Click OK.  
+
+Future Feaature Plans:
+ * Come up with a better system to flexibly offset rows.
+ * Option to enable and disable formula being pasted.
