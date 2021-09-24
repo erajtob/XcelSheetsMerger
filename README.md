@@ -16,6 +16,6 @@ If you don't have Macro's enabled first enable the Developer Tab:
 > On the right, within the Main Tabs pane, check the Developer option.  
 > Click OK.  
 
-Future Feaature Plans:
+Future Feature Plans:
  * Come up with a better system to flexibly offset rows.
  * Option to enable and disable formula being pasted.
